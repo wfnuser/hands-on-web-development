@@ -7,7 +7,6 @@ import (
 
 	consul "github.com/go-micro/plugins/v4/registry/consul"
 	micro "go-micro.dev/v4"
-	"go-micro.dev/v4/registry"
 )
 
 type Greeter struct{}
@@ -19,7 +18,7 @@ func (g *Greeter) Hello(ctx context.Context, req *proto.HelloRequest, rsp *proto
 }
 
 func main() {
-	r := consul.NewRegistry(registry.Addrs("localhost:8500"))
+	r := consul.NewRegistry()
 
 	service := micro.NewService(
 		micro.Name("my.micro.service"),
