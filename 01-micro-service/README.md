@@ -1,10 +1,13 @@
 # go-micro-consul-demo
 
 ## 项目说明
+本项目利用go-micro创建服务端(server.go)以及客户端(client.go)以演示微服务的基本架构。
+本项目利用consul进行服务发现并以protobuf为通信协议。
 
-此项目利用go-micro创建服务端(server.go)以及客户端(client.go).
+在服务端中使用protobuf文件定义了一个服务叫做Greeter的处理器,它有一个接收HelloRequest并返回HelloResponse的Hello方法。
+在客户端完成服务注册,客户端调用Hello,获取服务列表,获取单个服务,以及监听服务的功能。
 
-1. 在服务端中使用protobuf文件定义了一个服务叫做Greeter的处理器,它有一个接收HelloRequest并返回HelloResponse的Hello方法。并将服务端注册到consul
+## GRPC 接口定义
 
    ```protobuf
    syntax = "proto3";
@@ -24,12 +27,7 @@
    }
    ```
 
-2. 在客户端完成服务注册,客户端调用Hello,获取服务列表,获取单个服务,以及监听服务的功能。
-
-## 功能说明
-
-1. server.go
-
+## server.go
    1. 服务端:使用go-micro创建服务端Demo,并注册到consul
 
       ```go
@@ -49,7 +47,7 @@
 
       
 
-2. client.go
+## client.go
 
    1. 客户端:使用go-micro创建客户端Demo,注册到consul.
 
@@ -96,23 +94,30 @@
       	}
       ```
 
-   ## Run
+## 如何运行
+0. 准备consul环境
+   ```
+   docker run -d -p 8500:8500 --restart=always --name=consul consul:latest agent -server -bootstrap -ui -node=1 -client='0.0.0.0'
+   ```
 
-1. ```
-   # clone项目
+1. clone项目
+   ```
    git clone git@github.com/wfnuser/web-development-in-action.git
    ```
 
-2. ```
-   # 启动服务端
+2. protoc
+   ```
+   protoc  --micro_out=. --go_out=. proto/greeter.proto
+   ```
+
+3. 启动服务端
+   ```
    go run server.go --registry=consul --server_address=localhost:8500
-   
    ```
 
-3. ```
-   # 启动客户端
+4. 启动客户端
+   ```
    go run client.go
-   
    ```
 
-4. 在 consul 中可以看到 客户端和服务端都已经注册在服务列表中。
+5. 在consul中可以看到 客户端和服务端都已经注册在服务列表中
