@@ -1,6 +1,7 @@
 # go-micro-consul-demo
 
 ## 项目说明
+
 本项目利用go-micro创建服务端(server.go)以及客户端(client.go)以演示微服务的基本架构。
 本项目利用consul进行服务发现并以protobuf为通信协议。
 
@@ -28,6 +29,7 @@
    ```
 
 ## server.go
+
    1. 服务端:使用go-micro创建服务端Demo,并注册到consul
 
       ```go
@@ -50,7 +52,6 @@
 ## client.go
 
    1. 客户端:使用go-micro创建客户端Demo,注册到consul.
-
       ```go
       	r := consul.NewRegistry(func(options *registry.Options) {
       		options.Addrs = addrs
@@ -61,7 +62,6 @@
       ```
 
    2. 客户端rpc调用
-
       ```go
       	// 创建新的客户端
       	greeter := helloworld.NewGreeterService(serverName, service.Client())
@@ -70,19 +70,16 @@
       ```
 
    3. 查询服务列表
-
       ```go
       	services,err:=registry.ListServices()
       ```
 
    4. 获取某一个服务
-
       ```go
       	service, err := registry.GetService(serverName)
       ```
 
    5. 监听服务
-
       ```go
       	//监听服务
       	watch, err := registry.Watch()
@@ -95,29 +92,30 @@
       ```
 
 ## 如何运行
-0. 准备consul环境
-   ```
-   docker run -d -p 8500:8500 --restart=always --name=consul consul:latest agent -server -bootstrap -ui -node=1 -client='0.0.0.0'
-   ```
 
-1. clone项目
-   ```
-   git clone git@github.com/wfnuser/web-development-in-action.git
-   ```
+   0. 准备consul环境
+      ```
+      docker run -d -p 8500:8500 --restart=always --name=consul consul:latest agent -server -bootstrap -ui -node=1 -client='0.0.0.0'
+      ```
 
-2. protoc
-   ```
-   protoc  --micro_out=. --go_out=. proto/greeter.proto
-   ```
+   1. clone项目
+      ```
+      git clone git@github.com/wfnuser/web-development-in-action.git
+      ```
 
-3. 启动服务端
-   ```
-   go run server.go --registry=consul --server_address=localhost:8500
-   ```
+   2. protoc
+      ```
+      protoc  --micro_out=. --go_out=. proto/greeter.proto
+      ```
 
-4. 启动客户端
-   ```
-   go run client.go
-   ```
+   3. 启动服务端
+      ```
+      go run server.go --registry=consul --server_address=localhost:8500
+      ```
 
-5. 在consul中可以看到 客户端和服务端都已经注册在服务列表中
+   4. 启动客户端
+      ```
+      go run client.go
+      ```
+
+   5. 在consul中可以看到 客户端和服务端都已经注册在服务列表中
