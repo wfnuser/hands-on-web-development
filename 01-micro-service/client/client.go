@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	proto "go-micro-nacos-demo/proto"
+	"time"
 
 	consul "github.com/go-micro/plugins/v4/registry/consul"
 	micro "go-micro.dev/v4"
@@ -31,11 +32,19 @@ func main() {
 	// 创建新的客户端
 	greeter := proto.NewGreeterService(serverName, service.Client())
 	// 调用greeter
-	rsp, err := greeter.Hello(context.TODO(), &proto.HelloRequest{Name: "John"})
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(rsp)
+
+	ticker := time.NewTicker(1 * time.Second / 100)
+	defer ticker.Stop()
+
+	go func() {
+		for range ticker.C {
+			rsp, err := greeter.Hello(context.TODO(), &proto.HelloRequest{Name: "John"})
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(rsp)
+		}
+	}()
 
 	// 监听服务
 	watch, err := registry.Watch()
@@ -46,11 +55,11 @@ func main() {
 	// 打印响应请求
 	// fmt.Println(rsp.Greeting)
 	go service.Run()
+
 	for {
 		result, err := watch.Next()
 		if len(result.Action) > 0 {
 			fmt.Println(result, err)
 		}
 	}
-
 }
