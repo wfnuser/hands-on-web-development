@@ -119,3 +119,36 @@
       ```
 
    5. 在consul中可以看到 客户端和服务端都已经注册在服务列表中
+
+## 限流器
+限流器通常也是微服务架构中的一个必不可少的环节；我们这里为限流器做一个简单的演示。
+
+   1. 在客户端调整请求的频率
+      ```
+      ticker := time.NewTicker(1 * time.Second / 100)
+      defer ticker.Stop()
+
+      go func() {
+         for range ticker.C {
+            rsp, err := greeter.Hello(context.TODO(), &proto.HelloRequest{Name: "John"})
+            if err != nil {
+               fmt.Println(err)
+            }
+            fmt.Println(rsp)
+         }
+      }()
+      ```
+
+   2. 在服务端设置限流器允许的 rate
+      ```
+      limit := 5
+      br := ratelimit.NewBucketWithRate(float64(limit), int64(limit))
+
+      service := micro.NewService(
+         micro.Name("my.micro.service"),
+         micro.Registry(r),
+         micro.WrapHandler(rl.NewHandlerWrapper(br, false)),
+      )
+      ```
+
+   3. 分别尝试让客户端以每秒100次和每秒一次的频率请求服务端 观察现象
