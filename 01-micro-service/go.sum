@@ -190,8 +190,6 @@ github.com/go-logfmt/logfmt v0.3.0/go.mod h1:Qt1PoO58o5twSAckw1HlFXLmHsOX5/0LbT9
 github.com/go-logfmt/logfmt v0.4.0/go.mod h1:3RMwSq7FuexP4Kalkev3ejPJsZTpXXBr9+V4qmtdjCk=
 github.com/go-micro/plugins/v4/registry/consul v1.0.0 h1:LHW9vfKxa6+LoHi2LwtoTZj7l17gtcD7dRiIm5UTME0=
 github.com/go-micro/plugins/v4/registry/consul v1.0.0/go.mod h1:7dTm1ciJZVVUT9PFZVPTrvyvZNh4TPZnuXGyINnEioE=
-github.com/go-micro/plugins/v4/registry/nacos v1.0.0 h1:7aEVUUCpSH2Wjzv2EVB7kWcfk0WNSIoyFu0fLHlsC9I=
-github.com/go-micro/plugins/v4/registry/nacos v1.0.0/go.mod h1:3pCK+8gBVBN4bMVmKATrS3YqxlfvCsP54NJqFvbcUJg=
 github.com/go-resty/resty/v2 v2.1.1-0.20191201195748-d7b97669fe48/go.mod h1:dZGr0i9PLlaaTD4H/hoZIDjQ+r6xq8mgbRzHZf7f2J8=
 github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/melR3HDY=
 github.com/gobs/pretty v0.0.0-20180724170744-09732c25a95b/go.mod h1:Xo4aNUOrJnVruqWQJBtW6+bTBDTniY8yZum5rF3b5jw=
@@ -441,8 +439,6 @@ github.com/modern-go/reflect2 v1.0.1 h1:9f412s+6RmYXLWZSEzVVgPGK7C2PphHj5RJrvfx9
 github.com/modern-go/reflect2 v1.0.1/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3RllmbCylyMrvgv0=
 github.com/morikuni/aec v1.0.0/go.mod h1:BbKIizmSmc5MMPqRYbxO4ZU0S0+P200+tUnFx7PXmsc=
 github.com/mwitkow/go-conntrack v0.0.0-20161129095857-cc309e4a2223/go.mod h1:qRWi+5nqEBWmkhHvq77mSJWrCKwh8bxhgT7d/eI7P4U=
-github.com/nacos-group/nacos-sdk-go/v2 v2.0.0-Beta.1 h1:TNQJ4ZJvBwxLNzXTg7ZyVtBHmHIgi+FtZgCBNtOvGPQ=
-github.com/nacos-group/nacos-sdk-go/v2 v2.0.0-Beta.1/go.mod h1:4jAk6l0dnS/0w4RnRqf1CcqmWlbgEguZeEPUn9+e/dI=
 github.com/namedotcom/go v0.0.0-20180403034216-08470befbe04/go.mod h1:5sN+Lt1CaY4wsPvgQH/jsuJi4XO2ssZbdsIizr4CVC8=
 github.com/nbio/st v0.0.0-20140626010706-e9e8d9816f32/go.mod h1:9wM+0iRr9ahx58uYLpLIr5fm8diHn0JbqRycJi6w0Ms=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=

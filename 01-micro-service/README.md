@@ -105,6 +105,7 @@
 
    2. protoc
       ```
+      go install go-micro.dev/v4/cmd/protoc-gen-micro@v4
       protoc  --micro_out=. --go_out=. proto/greeter.proto
       ```
 

@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	proto "go-micro-nacos-demo/proto"
+	proto "go-micro-consul-demo/proto"
 
 	rl "github.com/asim/go-micro/plugins/wrapper/ratelimiter/ratelimit/v4"
 	consul "github.com/go-micro/plugins/v4/registry/consul"

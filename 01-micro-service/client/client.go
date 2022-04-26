@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	proto "go-micro-nacos-demo/proto"
+	proto "go-micro-consul-demo/proto"
 	"time"
 
 	consul "github.com/go-micro/plugins/v4/registry/consul"

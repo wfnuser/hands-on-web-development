@@ -1,4 +1,4 @@
-module go-micro-nacos-demo
+module go-micro-consul-demo
 
 go 1.14
 
